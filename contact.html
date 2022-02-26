@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/styles.css">
+  <title>Contact</title>
+</head>
+<header>
+  <h1>Pokedex</h1>
+  <a class="contact" href="contact.html">Contact</a>
+</header>
+<body>
+  <div class="breadcrumb-nav"><a href="/">Home</a></div>
+  <main class="form-container">
+    <form id="contact-form">
+      <div class="message-container">Please fill out the form</div>
+      <div class="input-container">
+        <label>
+          Your name:
+          <input type="text" name="name" id="name">
+        </label>
+        <div class="form-error" id="name-error">Please enter your name</div>
+      </div>
+
+      <div class="input-container">
+        <label>
+          Subject:
+          <input type="text" name="subject" id="subject" placeholder="Minimum 10 letters">
+        </label>
+        <div class="form-error" id="subject-error">Please provide a subject (10 letters)</div>
+      </div>
+
+      <div class="input-container">
+        <label>
+          Your email:
+          <input type="text" name="email" id="email">
+        </label>
+        <div class="form-error" id="email-error">Please enter a valid email</div>
+      </div>
+
+      <div class="input-container">
+        <label>
+          Address:
+          <input type="text" name="address" id="address" placeholder="Minimum 25 letters">
+        </label>
+        <div class="form-error" id="address-error">Please enter a valid address (25 letters)</div>
+      </div>
+
+      <button>Submit</button>
+    </form>
+  </main>
+  <footer></footer>
+  <script src="js/contact.js"></script>
+</body>
+</html>
