@@ -1,15 +1,15 @@
 // target elements
 const detailsContainer = document.querySelector(".poke-container");
-const title = document.querySelector("title");
+
 
 //get querystring
 const queryString = document.location.search;
 const params = new URLSearchParams(queryString);
-const id = params.get("name");
+const pokeName = params.get("name");
 
 
 // url for API
-const url = "https://pokedex2.p.rapidapi.com/pokedex/uk/" + id;
+const url = "https://pokedex2.p.rapidapi.com/pokedex/uk/" + pokeName;
 
 const options = { "headers": {
   "x-rapidapi-host": "pokedex2.p.rapidapi.com",
@@ -17,16 +17,14 @@ const options = { "headers": {
 }};
 
 
-//API call
-async function fetchPokemon() {
+async function callPokemon() { //API call
   try {
-  const response = await fetch(url, options);
-  const pokemon = await response.json();
+    const response = await fetch(url, options);
+    const pokemon = await response.json();
 
-  console.log(pokemon);
+    console.log(pokemon);
  
-  detailsContainer.innerHTML = "";
-  createHtml(pokemon); //content to be displayed
+    createHtml(pokemon); //content to be displayed
 
   } catch(error) { //displaying that an error has occured
     detailsContainer.innerHTML = displayError();
@@ -34,11 +32,11 @@ async function fetchPokemon() {
   }
 };
 
-fetchPokemon();
+callPokemon();
 
-
-// HTML to be created up execution of fetchPokemon()
-function createHtml(pokemon) {
+function createHtml(pokemon) { // HTML to be created upon execution of fetchPokemon()
+  const title = document.querySelector("title");
+  detailsContainer.innerHTML = "";
 
   title.innerHTML = pokemon[0].name;
 

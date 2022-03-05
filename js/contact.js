@@ -40,7 +40,7 @@ function validateForm(event) { // form validation
     emailError.style.display = "block";
   }
 
-  submissionSuccess();
+  passValidation();
   
 }
 
@@ -61,7 +61,7 @@ function validateEmail(email) { // validate email
   return patternMatches;
 };
 
-function submissionSuccess() { //function for successful submission of form.
+function passValidation() { //function for successful submission of form.
   if (checkLength(yourName.value, 0) && checkLength (subject.value, 9) && checkLength(address.value, 24) && validateEmail(email.value)) {
     messageContainer.innerHTML = `<div class="success">Your submission was successful!</div>`;
     form.reset();

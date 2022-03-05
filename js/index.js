@@ -1,46 +1,48 @@
-const url = "https://pokedex2.p.rapidapi.com/pokedex/uk";
+const filters = document.querySelector(".filters");
+const container = document.querySelector(".container");
+
+const pokeURL = "https://pokedex2.p.rapidapi.com/pokedex/uk/";
 
 const options = { "headers": {
 		"x-rapidapi-host": "pokedex2.p.rapidapi.com",
 		"x-rapidapi-key": "9f4abe256cmshb615b7eda81776cp17607ajsn94b7372ba1af"
 }};
 
-const container = document.querySelector(".container");
-
-async function callPokedex() { //api call
+async function callPokedex() { //API call
   try {
-    const response = await fetch(url, options);
+    const response = await fetch(pokeURL, options);
     const pokemon = await response.json();
+
+    console.log(pokemon);
 
     renderPokemon(pokemon); //function for HTML to be displayed
     searchPokemon(pokemon); //filter (by type)
-
-  } catch(error) { //displaying that an error has occured
+    
+  } catch (error) {
     container.innerHTML = displayError();
-    console.log(error); 
-  }
-}
+    console.log(error);
+    }
+  };
 
 callPokedex();
 
-function renderPokemon(pokemonToRender) { //function for HTML to be displayed
+function renderPokemon(pokemonArrey) { //HTML to be rendered upon execution of callPokedex()
+
   container.innerHTML = "";
-
-  const pokemon = pokemonToRender;
-
-  for(let i = 0; i < pokemon.length; i++) {
+  
+  for(let i = 0; i < pokemonArrey.length; i++) {
 
     if (i === 50) { // change value to display more Pokemon.
       break;
     }
 
-    const newNumber = +pokemon[i].number; //removes 0´s in front
+    const newNumber = +pokemonArrey[i].number; //removes 0´s in front
 
     container.innerHTML +=`<div class="card">
-                            <a href="details.html?name=${pokemon[i].name}">
-                            <div class="image"><img src="${pokemon[i].ThumbnailImage}" alt="${pokemon[i].name}"></div>
+                            <a href="details.html?name=${pokemonArrey[i].name}">
+                            <div class="image"><img src="${pokemonArrey[i].ThumbnailImage}" alt="${pokemonArrey[i].name}"></div>
                               <div class="content">
-                                <h3 class="name">${pokemon[i].name}</h3>
+                                <h3 class="name">${pokemonArrey[i].name}</h3>
                                 <span class="number">${newNumber}</span>
                               </div>
                             </a>
@@ -58,10 +60,10 @@ function searchPokemon(searching) { // function for filtering
       if (pokemon.type[0].toLowerCase().startsWith(searchValue)) {
         return true;
       }
-    });
+    })
 
     renderPokemon(filterByType);
-  };
-}
+  }
+};
 
 
